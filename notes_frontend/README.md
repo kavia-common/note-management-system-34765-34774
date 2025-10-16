@@ -1,49 +1,59 @@
-# lightningjs
+# Ocean Notes (Lightning.js / Blits)
 
-### lightningjs
+A modern notes UI built with Lightning.js (Blits), following the Ocean Professional theme.
 
+## Features
+- Header with app title and New Note action
+- Responsive grid of note cards (title, snippet, updated date)
+- Create and Edit via modal with validation
+- Delete notes
+- In-memory state with optional localStorage persistence
+- Organized for future backend integration via `NotesService`
 
-Welcome to the _lightningjs_ Lightning 3 Blits App!
+## Project Structure
+- `src/index.js` – App entrypoint; launches Blits Application with Theme plugin
+- `src/App.js` – Root Application with Header, NotesGrid, floating action button, and NoteModal
+- `src/components/Header.js` – App header and New Note button
+- `src/components/NotesGrid.js` – Layout logic for the cards grid
+- `src/components/NoteCard.js` – Individual card UI with Edit/Delete
+- `src/components/NoteModal.js` – Modal for create/edit, with basic input handling and validation
+- `src/services/NotesService.js` – Async CRUD stubs, in-memory with localStorage sync
+- `src/styles/theme.js` – Ocean Professional theme tokens (colors, spacing, radii, shadows)
+- `public/index.html` – Mount point and document metadata
 
-### Getting started
+## Theming (Ocean Professional)
+- Primary: `#2563EB`
+- Secondary/Success: `#F59E0B`
+- Error: `#EF4444`
+- Background: `#f9fafb`
+- Surface: `#ffffff`
+- Text: `#111827`
+- Guidance: Modern, clean, subtle shadows, rounded corners, smooth transitions.
 
-Follow the steps below to get your Lightning 3 Blits App up and running in no time.
+## Running
+This project uses Vite (already configured). In the preview system it should run automatically.
+To run locally:
 
-#### IDE setup
-
-It is highly recommended to install the Blits [VS-code extension](https://marketplace.visualstudio.com/items?itemName=LightningJS.lightning-blits) which will give you template highlighting and improved autocompletion.
-
-#### Project setup
-
-Run the following command to install the dependencies of your App:
-
-```sh
+```bash
 npm install
-```
-
-#### Build and run in development mode
-
-Run your App in development mode:
-
-```sh
 npm run dev
 ```
 
-This command uses Vite to fire up a local server, with Hot Reloading support. Visit the provided link in your web browser to see the App in action.
+Open http://localhost:3000 (port may vary) and you should see Ocean Notes.
 
-#### Build the App for production
+## Usage
+- Press Enter on the “New Note” button or the floating plus button to open the modal.
+- Type characters to fill the Title and Content fields (press Enter on the field to focus it).
+- Press Enter on “Save” to create or update the note. Escape cancels.
 
-Create an optimized and minified version of your App:
+Note: This demo uses a minimal typing handler to input text due to Lightning’s TV-centric input model. For production, integrate with a proper text input plugin or a virtual keyboard.
 
-```sh
-npm run build
-```
+## Backend-ready Architecture
+`NotesService` methods are async and return Promises to mirror real API calls. Replace the in-memory logic with fetch/XHR to your backend later. Keep method signatures:
+- `listNotes()`
+- `createNote({ title, content })`
+- `updateNote(id, { title, content })`
+- `deleteNote(id)`
 
-This will create a production version of the app in the `dist` folder.
-
-
-### Resources
-
-- [Blits documentation](https://lightningjs.io/v3-docs/blits/getting_started/intro.html) - official documentation
-- [Blits Example App](https://blits-demo.lightningjs.io/?source=true) - a great reference to learn by example
-- [Blits Components](https://lightningjs.io/blits-components.html) - off-the-shelf, basic and performant reference components
+## License
+MIT
